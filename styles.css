@@ -1,0 +1,228 @@
+/* Estilos globais */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6;
+}
+
+/* Estilos do cabeçalho */
+header {
+    padding: 1rem 0;
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+header a {
+    transition: color 0.2s;
+}
+
+/* Estilos do conteúdo principal */
+main {
+    padding: 2rem 0;
+}
+
+/* Estilos dos cards */
+.card {
+    background-color: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos dos botões */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+    background-color: #6b7280;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #4b5563;
+}
+
+.btn-success {
+    background-color: #059669;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #047857;
+}
+
+.btn-gray {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+.btn-gray:hover {
+    background-color: #d1d5db;
+}
+
+.btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0.375rem;
+    color: white;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-voltar:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(-2px);
+}
+
+.btn-voltar svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* Estilos dos inputs */
+.input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+}
+
+/* Estilos dos números selecionados */
+.numero-selecionado {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 9999px;
+    font-weight: 600;
+}
+
+/* Estilos do histórico */
+.historico-item {
+    background-color: #f9fafb;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.historico-numeros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.historico-info {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* Estilos do rodapé */
+footer {
+    background-color: #1F2937;
+    color: white;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+/* Estilos do loading */
+.loading-icon {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Estilos responsivos */
+@media (max-width: 640px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .historico-item {
+        padding: 0.75rem;
+    }
+}
+
+/* Cores específicas para cada jogo */
+.lotofacil {
+    --primary-color: #4f46e5;
+    --primary-hover: #4338ca;
+}
+
+.mega-sena {
+    --primary-color: #059669;
+    --primary-hover: #047857;
+}
+
+.quina {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+}
+
+.lotomania {
+    --primary-color: #dc2626;
+    --primary-hover: #b91c1c;
+}
+
+.dupla-sena {
+    --primary-color: #d97706;
+    --primary-hover: #b45309;
+}
+
+.federal {
+    --primary-color: #4c1d95;
+    --primary-hover: #5b21b6;
+} 

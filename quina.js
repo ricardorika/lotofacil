@@ -1,8 +1,8 @@
-// Função para buscar os últimos jogos da Lotofácil
+// Função para buscar os últimos jogos da Quina
 async function buscarUltimosJogos(quantidade = 100) {
     try {
-        // Usando a API da Lotofácil
-        const response = await fetch(`https://loteriascaixa-api.herokuapp.com/api/lotofacil/latest/${quantidade}`);
+        // Usando a API da Quina
+        const response = await fetch(`https://loteriascaixa-api.herokuapp.com/api/quina/latest/${quantidade}`);
         if (!response.ok) {
             throw new Error('Erro na resposta da API');
         }
@@ -29,7 +29,7 @@ async function buscarUltimosJogos(quantidade = 100) {
 function gerarDadosExemplo(quantidade) {
     const jogos = [];
     for (let i = 0; i < quantidade; i++) {
-        const numeros = Array.from({length: 25}, (_, i) => i + 1);
+        const numeros = Array.from({length: 80}, (_, i) => i + 1);
         // Embaralhar números
         for (let j = numeros.length - 1; j > 0; j--) {
             const k = Math.floor(Math.random() * (j + 1));
@@ -37,7 +37,7 @@ function gerarDadosExemplo(quantidade) {
         }
         jogos.push({
             concurso: i + 1,
-            dezenas: numeros.slice(0, 15).sort((a, b) => a - b)
+            dezenas: numeros.slice(0, 5).sort((a, b) => a - b)
         });
     }
     return jogos;
@@ -53,7 +53,7 @@ function calcularEstatisticas(jogos) {
     };
 
     // Inicializar contadores
-    for (let i = 1; i <= 25; i++) {
+    for (let i = 1; i <= 80; i++) {
         estatisticas.frequencia[i] = 0;
     }
 
@@ -84,7 +84,7 @@ function calcularEstatisticas(jogos) {
 // Função para gerar números baseados em estatísticas
 function gerarNumerosBaseadosEmEstatisticas(estatisticas) {
     const numeros = [];
-    const numerosDisponiveis = Array.from({length: 25}, (_, i) => i + 1);
+    const numerosDisponiveis = Array.from({length: 80}, (_, i) => i + 1);
     
     // Ordenar números por frequência
     const numerosOrdenados = numerosDisponiveis.sort((a, b) => 
@@ -92,7 +92,7 @@ function gerarNumerosBaseadosEmEstatisticas(estatisticas) {
     );
 
     // Selecionar números mais frequentes
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 5; i++) {
         numeros.push(numerosOrdenados[i]);
     }
 
@@ -101,7 +101,7 @@ function gerarNumerosBaseadosEmEstatisticas(estatisticas) {
 
 // Funções para gerenciar o histórico de jogos
 function salvarJogo(numeros, tipo) {
-    const jogos = JSON.parse(localStorage.getItem('ultimosJogos') || '[]');
+    const jogos = JSON.parse(localStorage.getItem('ultimosJogosQuina') || '[]');
     const novoJogo = {
         numeros: Array.from(numeros).sort((a, b) => a - b),
         tipo: tipo,
@@ -111,13 +111,13 @@ function salvarJogo(numeros, tipo) {
     jogos.unshift(novoJogo);
     // Manter apenas os últimos 10 jogos
     const jogosLimitados = jogos.slice(0, 10);
-    localStorage.setItem('ultimosJogos', JSON.stringify(jogosLimitados));
+    localStorage.setItem('ultimosJogosQuina', JSON.stringify(jogosLimitados));
     atualizarHistoricoJogos();
 }
 
 function atualizarHistoricoJogos() {
     const historicoContainer = document.getElementById('historicoJogos');
-    const jogos = JSON.parse(localStorage.getItem('ultimosJogos') || '[]');
+    const jogos = JSON.parse(localStorage.getItem('ultimosJogosQuina') || '[]');
     const tipoFiltro = document.getElementById('filtroTipo').value;
     
     historicoContainer.innerHTML = '';
@@ -131,21 +131,21 @@ function atualizarHistoricoJogos() {
         div.className = 'bg-gray-50 p-4 rounded-lg mb-2';
         
         const numerosHtml = jogo.numeros.map(num => 
-            `<span class="bg-purple-600 text-white px-2 py-1 rounded-full text-sm mr-1">${num}</span>`
+            `<span class="bg-blue-600 text-white px-2 py-1 rounded-full text-sm mr-1">${num}</span>`
         ).join('');
         
         let tipoClass, tipoTexto;
         switch(jogo.tipo) {
             case 'estatisticas':
-                tipoClass = 'text-green-600';
+                tipoClass = 'text-purple-600';
                 tipoTexto = 'Gerado com Estatísticas';
                 break;
             case 'aleatorio':
-                tipoClass = 'text-purple-600';
+                tipoClass = 'text-blue-600';
                 tipoTexto = 'Gerado Aleatoriamente';
                 break;
             case 'manual':
-                tipoClass = 'text-blue-600';
+                tipoClass = 'text-green-600';
                 tipoTexto = 'Gerado Manualmente';
                 break;
         }
@@ -181,10 +181,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let estatisticasAtuais = null;
     let modoManual = false;
 
-    // Criar os 25 números
-    for (let i = 1; i <= 25; i++) {
+    // Criar os 80 números
+    for (let i = 1; i <= 80; i++) {
         const numero = document.createElement('button');
-        numero.className = 'w-12 h-12 rounded-full border-2 border-purple-600 text-lg font-semibold hover:bg-purple-100 transition-colors';
+        numero.className = 'w-12 h-12 rounded-full border-2 border-blue-600 text-lg font-semibold hover:bg-blue-100 transition-colors';
         numero.textContent = i;
         numero.addEventListener('click', () => toggleNumero(i, numero));
         numerosContainer.appendChild(numero);
@@ -193,20 +193,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function toggleNumero(num, elemento) {
         if (numerosSelecionados.has(num)) {
             numerosSelecionados.delete(num);
-            elemento.classList.remove('bg-purple-600', 'text-white');
-            elemento.classList.add('border-purple-600');
+            elemento.classList.remove('bg-blue-600', 'text-white');
+            elemento.classList.add('border-blue-600');
             atualizarNumerosSelecionados();
             modoManual = true;
             btnConfirmarJogo.classList.remove('hidden');
-        } else if (numerosSelecionados.size < 15) {
+        } else if (numerosSelecionados.size < 5) {
             numerosSelecionados.add(num);
-            elemento.classList.add('bg-purple-600', 'text-white');
-            elemento.classList.remove('border-purple-600');
+            elemento.classList.add('bg-blue-600', 'text-white');
+            elemento.classList.remove('border-blue-600');
             atualizarNumerosSelecionados();
             modoManual = true;
             btnConfirmarJogo.classList.remove('hidden');
         } else {
-            alert('Você já selecionou 15 números!');
+            alert('Você já selecionou 5 números!');
         }
     }
 
@@ -214,17 +214,10 @@ document.addEventListener('DOMContentLoaded', () => {
         numerosSelecionadosContainer.innerHTML = '';
         [...numerosSelecionados].sort((a, b) => a - b).forEach(num => {
             const span = document.createElement('span');
-            span.className = 'bg-purple-600 text-white px-3 py-1 rounded-full';
+            span.className = 'bg-blue-600 text-white px-3 py-1 rounded-full';
             span.textContent = num;
             numerosSelecionadosContainer.appendChild(span);
         });
-        
-        // Atualizar visibilidade do botão de confirmação
-        if (numerosSelecionados.size > 0) {
-            btnConfirmarJogo.classList.remove('hidden');
-        } else {
-            btnConfirmarJogo.classList.add('hidden');
-        }
     }
 
     function atualizarEstatisticas(estatisticas) {
@@ -269,11 +262,11 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('#numeros button').forEach(btn => {
                 const num = parseInt(btn.textContent);
                 if (numerosSelecionados.has(num)) {
-                    btn.classList.add('bg-purple-600', 'text-white');
-                    btn.classList.remove('border-purple-600');
+                    btn.classList.add('bg-blue-600', 'text-white');
+                    btn.classList.remove('border-blue-600');
                 } else {
-                    btn.classList.remove('bg-purple-600', 'text-white');
-                    btn.classList.add('border-purple-600');
+                    btn.classList.remove('bg-blue-600', 'text-white');
+                    btn.classList.add('border-blue-600');
                 }
             });
 
@@ -292,23 +285,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function gerarJogoAleatorio() {
-        const numeros = Array.from({length: 25}, (_, i) => i + 1);
+        const numeros = Array.from({length: 80}, (_, i) => i + 1);
         for (let i = numeros.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [numeros[i], numeros[j]] = [numeros[j], numeros[i]];
         }
         
-        numerosSelecionados = new Set(numeros.slice(0, 15));
+        numerosSelecionados = new Set(numeros.slice(0, 5));
         atualizarNumerosSelecionados();
         
         document.querySelectorAll('#numeros button').forEach(btn => {
             const num = parseInt(btn.textContent);
             if (numerosSelecionados.has(num)) {
-                btn.classList.add('bg-purple-600', 'text-white');
-                btn.classList.remove('border-purple-600');
+                btn.classList.add('bg-blue-600', 'text-white');
+                btn.classList.remove('border-blue-600');
             } else {
-                btn.classList.remove('bg-purple-600', 'text-white');
-                btn.classList.add('border-purple-600');
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('border-blue-600');
             }
         });
 
@@ -318,20 +311,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function confirmarJogoManual() {
-        if (numerosSelecionados.size === 15) {
+        if (numerosSelecionados.size === 5) {
             salvarJogo(numerosSelecionados, 'manual');
             modoManual = false;
             btnConfirmarJogo.classList.add('hidden');
         } else {
-            alert('Selecione exatamente 15 números antes de confirmar!');
+            alert('Selecione exatamente 5 números antes de confirmar!');
         }
     }
 
     function limparJogo() {
         numerosSelecionados.clear();
         document.querySelectorAll('#numeros button').forEach(btn => {
-            btn.classList.remove('bg-purple-600', 'text-white');
-            btn.classList.add('border-purple-600');
+            btn.classList.remove('bg-blue-600', 'text-white');
+            btn.classList.add('border-blue-600');
         });
         numerosSelecionadosContainer.innerHTML = '';
         frequenciaNumerosContainer.innerHTML = '';

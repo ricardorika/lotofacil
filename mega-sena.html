@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Jogos - Mega-Sena</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen mega-sena">
+    <header class="bg-green-600 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-4">
+                <h1 class="text-2xl font-bold">Mega-Sena</h1>
+                <a href="index.html" class="btn-voltar">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Voltar para o Menu
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="card mb-8">
+            <h2 class="text-xl font-semibold mb-4">Selecione 6 números de 1 a 60</h2>
+            <div id="numeros" class="grid grid-cols-10 gap-2 mb-6"></div>
+            
+            <div class="flex flex-wrap gap-4 mb-6">
+                <button id="gerarJogo" class="btn btn-primary">
+                    Gerar Jogo Aleatório
+                </button>
+                <button id="gerarEstatisticas" class="btn btn-secondary">
+                    <span>Gerar com Estatísticas</span>
+                    <svg id="loadingIcon" class="loading-icon h-5 w-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+                <button id="confirmarJogo" class="btn btn-success hidden">
+                    Confirmar Jogo Manual
+                </button>
+                <button id="limparJogo" class="btn btn-gray">
+                    Limpar Seleção
+                </button>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold mb-2">Números Selecionados:</h3>
+                <div id="numerosSelecionados" class="flex flex-wrap gap-2"></div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="card">
+                <h2 class="text-xl font-semibold mb-4">Estatísticas</h2>
+                <div class="mb-4">
+                    <h3 class="text-lg font-medium mb-2">Frequência dos Números:</h3>
+                    <div id="frequenciaNumeros" class="flex flex-wrap gap-2"></div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-medium mb-2">Distribuição:</h3>
+                    <div id="distribuicao" class="space-y-2"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="text-xl font-semibold mb-4">Histórico de Jogos</h2>
+                <div class="mb-4">
+                    <label for="filtroTipo" class="block text-sm font-medium text-gray-700 mb-2">Filtrar por tipo:</label>
+                    <select id="filtroTipo" class="input">
+                        <option value="todos">Todos</option>
+                        <option value="manual">Manual</option>
+                        <option value="aleatorio">Aleatório</option>
+                        <option value="estatisticas">Estatísticas</option>
+                    </select>
+                </div>
+                <div id="historicoJogos" class="space-y-4"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container mx-auto px-4 text-center text-sm">
+            <p>Este projeto não é oficialmente associado à Caixa Econômica Federal.</p>
+        </div>
+    </footer>
+
+    <script src="mega-sena.js"></script>
+</body>
+</html> 

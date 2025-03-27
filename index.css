@@ -1,0 +1,38 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6;
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Cores específicas para cada jogo */
+.lotofacil-card .numero {
+    background-color: #4f46e5;
+}
+
+.mega-sena-card .numero {
+    background-color: #059669;
+}
+
+.quina-card .numero {
+    background-color: #2563eb;
+}
+
+.lotomania-card .numero {
+    background-color: #dc2626;
+}
+
+.dupla-sena-card .numero {
+    background-color: #d97706;
+}
+
+.federal-card .numero {
+    background-color: #4c1d95;
+} 
