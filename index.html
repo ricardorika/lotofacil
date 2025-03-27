@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotofácil - Gerador de Jogos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center text-purple-800 mb-8">Lotofácil - Gerador de Jogos</h1>
+        
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-4xl mx-auto">
+            <div class="grid grid-cols-5 gap-4 mb-6" id="numeros">
+                <!-- Os números serão gerados aqui via JavaScript -->
+            </div>
+
+            <div class="flex justify-center space-x-4 mb-6">
+                <button id="gerarJogo" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                    Gerar Novo Jogo
+                </button>
+                <button id="gerarEstatisticas" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center">
+                    <span id="loadingIcon" class="hidden mr-2">⌛</span>
+                    Gerar com Estatísticas
+                </button>
+                <button id="limparJogo" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors">
+                    Limpar
+                </button>
+            </div>
+
+            <div class="mt-6">
+                <h2 class="text-xl font-semibold text-center mb-4">Seus Números Selecionados:</h2>
+                <div id="numerosSelecionados" class="flex flex-wrap gap-2 justify-center mb-6">
+                    <!-- Números selecionados aparecerão aqui -->
+                </div>
+
+                <div class="border-t pt-4">
+                    <h2 class="text-xl font-semibold text-center mb-4">Estatísticas:</h2>
+                    <div id="estatisticas" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h3 class="font-semibold mb-2">Frequência dos Números:</h3>
+                            <div id="frequenciaNumeros" class="flex flex-wrap gap-2">
+                                <!-- Frequência dos números será exibida aqui -->
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h3 class="font-semibold mb-2">Distribuição:</h3>
+                            <div id="distribuicao" class="space-y-2">
+                                <!-- Distribuição será exibida aqui -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t pt-4 mt-6">
+                    <h2 class="text-xl font-semibold text-center mb-4">Últimos Jogos Gerados:</h2>
+                    <div id="historicoJogos" class="space-y-2">
+                        <!-- Histórico de jogos será exibido aqui -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
