@@ -1,5 +1,5 @@
 // Função para buscar os últimos jogos da Lotofácil
-async function buscarUltimosJogos(quantidade = 100) {
+async function buscarUltimosJogos(quantidade = 1000) {
     try {
         // Usando a API da Lotofácil
         const response = await fetch(`https://loteriascaixa-api.herokuapp.com/api/lotofacil/latest/${quantidade}`);

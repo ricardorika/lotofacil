@@ -118,10 +118,15 @@ function salvarJogo(numeros, tipo) {
 function atualizarHistoricoJogos() {
     const historicoContainer = document.getElementById('historicoJogos');
     const jogos = JSON.parse(localStorage.getItem('ultimosJogos') || '[]');
+    const tipoFiltro = document.getElementById('filtroTipo').value;
     
     historicoContainer.innerHTML = '';
     
-    jogos.forEach(jogo => {
+    const jogosFiltrados = tipoFiltro === 'todos' 
+        ? jogos 
+        : jogos.filter(jogo => jogo.tipo === tipoFiltro);
+    
+    jogosFiltrados.forEach(jogo => {
         const div = document.createElement('div');
         div.className = 'bg-gray-50 p-4 rounded-lg mb-2';
         
@@ -129,14 +134,28 @@ function atualizarHistoricoJogos() {
             `<span class="bg-purple-600 text-white px-2 py-1 rounded-full text-sm mr-1">${num}</span>`
         ).join('');
         
-        const tipoClass = jogo.tipo === 'estatisticas' ? 'text-green-600' : 'text-purple-600';
+        let tipoClass, tipoTexto;
+        switch(jogo.tipo) {
+            case 'estatisticas':
+                tipoClass = 'text-green-600';
+                tipoTexto = 'Gerado com Estatísticas';
+                break;
+            case 'aleatorio':
+                tipoClass = 'text-purple-600';
+                tipoTexto = 'Gerado Aleatoriamente';
+                break;
+            case 'manual':
+                tipoClass = 'text-blue-600';
+                tipoTexto = 'Gerado Manualmente';
+                break;
+        }
         
         div.innerHTML = `
             <div class="flex flex-wrap gap-2 mb-2">
                 ${numerosHtml}
             </div>
             <div class="text-sm text-gray-600">
-                <span class="${tipoClass} font-semibold">${jogo.tipo === 'estatisticas' ? 'Gerado com Estatísticas' : 'Gerado Aleatoriamente'}</span>
+                <span class="${tipoClass} font-semibold">${tipoTexto}</span>
                 <span class="ml-2">${jogo.data}</span>
             </div>
         `;
@@ -151,13 +170,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const numerosSelecionadosContainer = document.getElementById('numerosSelecionados');
     const btnGerarJogo = document.getElementById('gerarJogo');
     const btnGerarEstatisticas = document.getElementById('gerarEstatisticas');
+    const btnConfirmarJogo = document.getElementById('confirmarJogo');
     const btnLimparJogo = document.getElementById('limparJogo');
     const frequenciaNumerosContainer = document.getElementById('frequenciaNumeros');
     const distribuicaoContainer = document.getElementById('distribuicao');
     const loadingIcon = document.getElementById('loadingIcon');
+    const filtroTipo = document.getElementById('filtroTipo');
     
     let numerosSelecionados = new Set();
     let estatisticasAtuais = null;
+    let modoManual = false;
 
     // Criar os 25 números
     for (let i = 1; i <= 25; i++) {
@@ -174,11 +196,15 @@ document.addEventListener('DOMContentLoaded', () => {
             elemento.classList.remove('bg-purple-600', 'text-white');
             elemento.classList.add('border-purple-600');
             atualizarNumerosSelecionados();
+            modoManual = true;
+            btnConfirmarJogo.classList.remove('hidden');
         } else if (numerosSelecionados.size < 15) {
             numerosSelecionados.add(num);
             elemento.classList.add('bg-purple-600', 'text-white');
             elemento.classList.remove('border-purple-600');
             atualizarNumerosSelecionados();
+            modoManual = true;
+            btnConfirmarJogo.classList.remove('hidden');
         } else {
             alert('Você já selecionou 15 números!');
         }
@@ -226,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loadingIcon.classList.remove('hidden');
             btnGerarEstatisticas.disabled = true;
 
-            const jogos = await buscarUltimosJogos(100);
+            const jogos = await buscarUltimosJogos(1000);
             const estatisticas = calcularEstatisticas(jogos);
             atualizarEstatisticas(estatisticas);
 
@@ -246,6 +272,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             atualizarNumerosSelecionados();
             salvarJogo(numerosSelecionados, 'estatisticas');
+            modoManual = false;
+            btnConfirmarJogo.classList.add('hidden');
         } catch (error) {
             console.error('Erro ao gerar jogo com estatísticas:', error);
             alert('Ocorreu um erro ao gerar o jogo com estatísticas. Tente novamente.');
@@ -278,6 +306,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         salvarJogo(numerosSelecionados, 'aleatorio');
+        modoManual = false;
+        btnConfirmarJogo.classList.add('hidden');
+    }
+
+    function confirmarJogoManual() {
+        if (numerosSelecionados.size === 15) {
+            salvarJogo(numerosSelecionados, 'manual');
+            modoManual = false;
+            btnConfirmarJogo.classList.add('hidden');
+        } else {
+            alert('Selecione exatamente 15 números antes de confirmar!');
+        }
     }
 
     function limparJogo() {
@@ -289,11 +329,15 @@ document.addEventListener('DOMContentLoaded', () => {
         numerosSelecionadosContainer.innerHTML = '';
         frequenciaNumerosContainer.innerHTML = '';
         distribuicaoContainer.innerHTML = '';
+        modoManual = false;
+        btnConfirmarJogo.classList.add('hidden');
     }
 
     btnGerarJogo.addEventListener('click', gerarJogoAleatorio);
     btnGerarEstatisticas.addEventListener('click', gerarJogoComEstatisticas);
+    btnConfirmarJogo.addEventListener('click', confirmarJogoManual);
     btnLimparJogo.addEventListener('click', limparJogo);
+    filtroTipo.addEventListener('change', atualizarHistoricoJogos);
 
     // Carregar histórico de jogos ao iniciar
     atualizarHistoricoJogos();

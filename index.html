@@ -23,6 +23,9 @@
                     <span id="loadingIcon" class="hidden mr-2">⌛</span>
                     Gerar com Estatísticas
                 </button>
+                <button id="confirmarJogo" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors hidden">
+                    Confirmar Jogo Manual
+                </button>
                 <button id="limparJogo" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors">
                     Limpar
                 </button>
@@ -53,7 +56,17 @@
                 </div>
 
                 <div class="border-t pt-4 mt-6">
-                    <h2 class="text-xl font-semibold text-center mb-4">Últimos Jogos Gerados:</h2>
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-semibold">Últimos Jogos Gerados:</h2>
+                        <div class="flex space-x-2">
+                            <select id="filtroTipo" class="px-3 py-1 rounded border border-gray-300">
+                                <option value="todos">Todos</option>
+                                <option value="manual">Manuais</option>
+                                <option value="aleatorio">Aleatórios</option>
+                                <option value="estatisticas">Com Estatísticas</option>
+                            </select>
+                        </div>
+                    </div>
                     <div id="historicoJogos" class="space-y-2">
                         <!-- Histórico de jogos será exibido aqui -->
                     </div>
