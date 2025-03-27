@@ -184,30 +184,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Criar os 60 números
     for (let i = 1; i <= 60; i++) {
         const numero = document.createElement('button');
-        numero.className = 'w-12 h-12 rounded-full border-2 border-green-600 text-lg font-semibold hover:bg-green-100 transition-colors';
+        numero.className = 'aspect-square flex items-center justify-center text-base sm:text-lg font-semibold rounded-full border-2 border-green-600 hover:bg-green-100 transition-colors';
         numero.textContent = i;
         numero.addEventListener('click', () => toggleNumero(i, numero));
         numerosContainer.appendChild(numero);
     }
 
-    function toggleNumero(num, elemento) {
+    function toggleNumero(num, button) {
         if (numerosSelecionados.has(num)) {
             numerosSelecionados.delete(num);
-            elemento.classList.remove('bg-green-600', 'text-white');
-            elemento.classList.add('border-green-600');
-            atualizarNumerosSelecionados();
-            modoManual = true;
-            btnConfirmarJogo.classList.remove('hidden');
+            button.classList.remove('bg-green-600', 'text-white');
+            button.classList.add('border-green-600');
         } else if (numerosSelecionados.size < 6) {
             numerosSelecionados.add(num);
-            elemento.classList.add('bg-green-600', 'text-white');
-            elemento.classList.remove('border-green-600');
-            atualizarNumerosSelecionados();
-            modoManual = true;
-            btnConfirmarJogo.classList.remove('hidden');
+            button.classList.add('bg-green-600', 'text-white');
+            button.classList.remove('border-green-600');
         } else {
             alert('Você já selecionou 6 números!');
+            return;
         }
+        
+        atualizarNumerosSelecionados();
+        btnConfirmarJogo.classList.toggle('hidden', numerosSelecionados.size !== 6);
+        modoManual = true;
     }
 
     function atualizarNumerosSelecionados() {

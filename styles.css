@@ -179,23 +179,6 @@ footer {
     }
 }
 
-/* Estilos responsivos */
-@media (max-width: 640px) {
-    .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    
-    .btn {
-        width: 100%;
-        margin-bottom: 0.5rem;
-    }
-    
-    .historico-item {
-        padding: 0.75rem;
-    }
-}
-
 /* Cores específicas para cada jogo */
 .lotofacil {
     --primary-color: #4f46e5;
@@ -225,4 +208,288 @@ footer {
 .federal {
     --primary-color: #4c1d95;
     --primary-hover: #5b21b6;
+}
+
+/* Estilos da grade de números */
+#numeros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5rem;
+}
+
+/* Estilo específico para Mega-Sena */
+.mega-sena #numeros {
+    grid-template-columns: repeat(10, minmax(3rem, 1fr));
+    max-width: 900px;
+}
+
+/* Estilo específico para Dupla Sena */
+.dupla-sena #numeros {
+    grid-template-columns: repeat(10, minmax(3rem, 1fr));
+    max-width: 800px;
+}
+
+/* Estilo específico para Lotofácil */
+.lotofacil #numeros {
+    grid-template-columns: repeat(5, minmax(3.5rem, 1fr));
+    max-width: 600px;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.lotofacil #numeros button {
+    min-width: 3.5rem;
+    min-height: 3.5rem;
+    font-size: 1.25rem;
+    border-radius: 9999px;
+    border: 2px solid var(--primary-color);
+    background-color: white;
+    color: var(--primary-color);
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.lotofacil #numeros button:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+}
+
+.lotofacil #numeros button.selected {
+    background-color: var(--primary-color);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+#numeros button {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 50%;
+    font-weight: 600;
+    transition: all 0.2s;
+    font-size: 1.125rem;
+    padding: 0;
+    cursor: pointer;
+    min-width: 3rem;
+    min-height: 3rem;
+    touch-action: manipulation;
+    user-select: none;
+    position: relative;
+}
+
+#numeros button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+#numeros button.selected {
+    background-color: var(--primary-color);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1024px) {
+    #numeros {
+        grid-template-columns: repeat(10, minmax(2.75rem, 1fr));
+        gap: 0.5rem;
+    }
+
+    .mega-sena #numeros,
+    .dupla-sena #numeros {
+        grid-template-columns: repeat(10, minmax(2.75rem, 1fr));
+        max-width: 100%;
+    }
+
+    .lotofacil #numeros {
+        grid-template-columns: repeat(5, minmax(3.25rem, 1fr));
+        gap: 0.75rem;
+        padding: 0.75rem;
+    }
+
+    .lotofacil #numeros button {
+        min-width: 3.25rem;
+        min-height: 3.25rem;
+        font-size: 1.2rem;
+    }
+
+    #numeros button {
+        min-width: 2.75rem;
+        min-height: 2.75rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #numeros {
+        grid-template-columns: repeat(8, minmax(2.5rem, 1fr));
+        gap: 0.45rem;
+    }
+
+    .mega-sena #numeros,
+    .dupla-sena #numeros {
+        grid-template-columns: repeat(8, minmax(2.5rem, 1fr));
+    }
+
+    .lotofacil #numeros {
+        grid-template-columns: repeat(5, minmax(3rem, 1fr));
+        gap: 0.6rem;
+        padding: 0.6rem;
+    }
+
+    .lotofacil #numeros button {
+        min-width: 3rem;
+        min-height: 3rem;
+        font-size: 1.1rem;
+    }
+
+    #numeros button {
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    header {
+        padding: 0.75rem 0;
+    }
+    
+    header h1 {
+        font-size: 1.25rem;
+    }
+    
+    .btn-voltar {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    .btn-voltar svg {
+        width: 1rem;
+        height: 1rem;
+    }
+    
+    main {
+        padding: 1rem 0;
+    }
+    
+    .card {
+        padding: 1rem;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        padding: 0.75rem;
+        min-height: 2.75rem;
+    }
+    
+    #numeros {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0.4rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .lotofacil #numeros {
+        grid-template-columns: repeat(5, minmax(2.75rem, 1fr));
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .lotofacil #numeros button {
+        min-width: 2.75rem;
+        min-height: 2.75rem;
+        font-size: 1rem;
+    }
+    
+    #numeros button {
+        font-size: 0.9rem;
+        min-width: 2.15rem;
+        min-height: 2.15rem;
+    }
+    
+    .numero-selecionado {
+        width: 2rem;
+        height: 2rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    header h1 {
+        font-size: 1.125rem;
+    }
+    
+    .btn-voltar {
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .card {
+        padding: 0.75rem;
+    }
+    
+    #numeros {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.35rem;
+    }
+    
+    #numeros button {
+        font-size: 0.85rem;
+        min-width: 2rem;
+        min-height: 2rem;
+    }
+    
+    .numero-selecionado {
+        width: 1.85rem;
+        height: 1.85rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Ajuste específico para telas muito pequenas */
+@media (max-width: 360px) {
+    #numeros {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.3rem;
+    }
+    
+    #numeros button {
+        font-size: 0.8rem;
+        min-width: 1.85rem;
+        min-height: 1.85rem;
+    }
+    
+    .numero-selecionado {
+        width: 1.75rem;
+        height: 1.75rem;
+        font-size: 0.75rem;
+    }
 } 
