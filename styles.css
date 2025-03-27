@@ -205,11 +205,6 @@ footer {
     --primary-hover: #b45309;
 }
 
-.federal {
-    --primary-color: #4c1d95;
-    --primary-hover: #5b21b6;
-}
-
 /* Estilos da grade de números */
 #numeros {
     display: grid;
