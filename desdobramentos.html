@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desdobramentos - Lotofácil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen lotofacil">
+    <header class="bg-blue-600 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-4">
+                <h1 class="text-2xl font-bold">Desdobramentos Lotofácil</h1>
+                <a href="lotofacil.html" class="btn-voltar">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Voltar para Lotofácil
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="card mb-8">
+            <h2 class="text-xl font-semibold mb-4">O que são Desdobramentos?</h2>
+            <p class="mb-4">Desdobramentos são uma forma de apostar mais números com menor custo, garantindo no mínimo alguma premiação (como 14 ou 13 pontos). O objetivo é eliminar jogos com premiações repetidas, reduzindo o custo das apostas.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Fechamento com garantia de 12 pontos -->
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-4">Fechamento com garantia de 12 pontos</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="px-4 py-2">Dezenas</th>
+                                <th class="px-4 py-2">Precisa acertar</th>
+                                <th class="px-4 py-2">Nº de jogos</th>
+                                <th class="px-4 py-2">Valor (R$)</th>
+                                <th class="px-4 py-2">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-4 py-2">15</td>
+                                <td class="px-4 py-2">15</td>
+                                <td class="px-4 py-2">1</td>
+                                <td class="px-4 py-2">3,00</td>
+                                <td class="px-4 py-2">
+                                    <button class="btn btn-primary gerar-desdobramento" data-dezenas="15" data-jogos="1">
+                                        Gerar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">15</td>
+                                <td class="px-4 py-2">15</td>
+                                <td class="px-4 py-2">5</td>
+                                <td class="px-4 py-2">15,00</td>
+                                <td class="px-4 py-2">
+                                    <button class="btn btn-primary gerar-desdobramento" data-dezenas="15" data-jogos="5">
+                                        Gerar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">15</td>
+                                <td class="px-4 py-2">15</td>
+                                <td class="px-4 py-2">10</td>
+                                <td class="px-4 py-2">30,00</td>
+                                <td class="px-4 py-2">
+                                    <button class="btn btn-primary gerar-desdobramento" data-dezenas="15" data-jogos="10">
+                                        Gerar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">20</td>
+                                <td class="px-4 py-2">15</td>
+                                <td class="px-4 py-2">4</td>
+                                <td class="px-4 py-2">12,00</td>
+                                <td class="px-4 py-2">
+                                    <button class="btn btn-primary gerar-desdobramento" data-dezenas="20" data-jogos="4">
+                                        Gerar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">21</td>
+                                <td class="px-4 py-2">15</td>
+                                <td class="px-4 py-2">13</td>
+                                <td class="px-4 py-2">39,00</td>
+                                <td class="px-4 py-2">
+                                    <button class="btn btn-primary gerar-desdobramento" data-dezenas="21" data-jogos="13">
+                                        Gerar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Fechamento com garantia de 13 pontos -->
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-4">Fechamento com garantia de 13 pontos</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="px-4 py-2">Dezenas</th>
+                                <th class="px-4 py-2">Precisa acertar</th>
+                                <th class="px-4 py-2">Nº de jogos</th>
+                                <th class="px-4 py-2">Valor (R$)</th>
+                                <th class="px-4 py-2">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-4 py-2">18</td>
+                                <td class="px-4 py-2">15</td>
+                                <td class="px-4 py-2">6</td>
+                                <td class="px-4 py-2">18,00</td>
+                                <td class="px-4 py-2">
+                                    <button class="btn btn-primary gerar-desdobramento" data-dezenas="18" data-jogos="6">
+                                        Gerar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">19</td>
+                                <td class="px-4 py-2">15</td>
+                                <td class="px-4 py-2">21</td>
+                                <td class="px-4 py-2">63,00</td>
+                                <td class="px-4 py-2">
+                                    <button class="btn btn-primary gerar-desdobramento" data-dezenas="19" data-jogos="21">
+                                        Gerar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">20</td>
+                                <td class="px-4 py-2">15</td>
+                                <td class="px-4 py-2">41</td>
+                                <td class="px-4 py-2">123,00</td>
+                                <td class="px-4 py-2">
+                                    <button class="btn btn-primary gerar-desdobramento" data-dezenas="20" data-jogos="41">
+                                        Gerar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Fechamento com garantia de 14 pontos -->
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-4">Fechamento com garantia de 14 pontos</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="px-4 py-2">Dezenas</th>
+                                <th class="px-4 py-2">Precisa acertar</th>
+                                <th class="px-4 py-2">Nº de jogos</th>
+                                <th class="px-4 py-2">Valor (R$)</th>
+                                <th class="px-4 py-2">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-4 py-2">17</td>
+                                <td class="px-4 py-2">15</td>
+                                <td class="px-4 py-2">8</td>
+                                <td class="px-4 py-2">24,00</td>
+                                <td class="px-4 py-2">
+                                    <button class="btn btn-primary gerar-desdobramento" data-dezenas="17" data-jogos="8">
+                                        Gerar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">18</td>
+                                <td class="px-4 py-2">15</td>
+                                <td class="px-4 py-2">24</td>
+                                <td class="px-4 py-2">72,00</td>
+                                <td class="px-4 py-2">
+                                    <button class="btn btn-primary gerar-desdobramento" data-dezenas="18" data-jogos="24">
+                                        Gerar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">19</td>
+                                <td class="px-4 py-2">15</td>
+                                <td class="px-4 py-2">110</td>
+                                <td class="px-4 py-2">330,00</td>
+                                <td class="px-4 py-2">
+                                    <button class="btn btn-primary gerar-desdobramento" data-dezenas="19" data-jogos="110">
+                                        Gerar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Fechamento com dezenas fixas -->
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-4">Fechamento com dezenas fixas</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="px-4 py-2">Dezenas</th>
+                                <th class="px-4 py-2">Fixas</th>
+                                <th class="px-4 py-2">Nº de jogos</th>
+                                <th class="px-4 py-2">Valor (R$)</th>
+                                <th class="px-4 py-2">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-4 py-2">25</td>
+                                <td class="px-4 py-2">14</td>
+                                <td class="px-4 py-2">11</td>
+                                <td class="px-4 py-2">33,00</td>
+                                <td class="px-4 py-2">
+                                    <button class="btn btn-primary gerar-desdobramento" data-dezenas="25" data-fixas="14" data-jogos="11">
+                                        Gerar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">25</td>
+                                <td class="px-4 py-2">13</td>
+                                <td class="px-4 py-2">66</td>
+                                <td class="px-4 py-2">198,00</td>
+                                <td class="px-4 py-2">
+                                    <button class="btn btn-primary gerar-desdobramento" data-dezenas="25" data-fixas="13" data-jogos="66">
+                                        Gerar
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">25</td>
+                                <td class="px-4 py-2">12</td>
+                                <td class="px-4 py-2">286</td>
+                                <td class="px-4 py-2">858,00</td>
+                                <td class="px-4 py-2">
+                                    <button class="btn btn-primary gerar-desdobramento" data-dezenas="25" data-fixas="12" data-jogos="286">
+                                        Gerar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Área de resultado -->
+        <div class="card mt-8">
+            <h3 class="text-lg font-semibold mb-4">Resultado do Desdobramento</h3>
+            <div id="resultadoDesdobramento" class="space-y-4"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container mx-auto px-4 text-center text-sm">
+            <p>Este projeto não é oficialmente associado à Caixa Econômica Federal.</p>
+        </div>
+    </footer>
+
+    <script src="desdobramentos.js"></script>
+</body>
+</html> 
