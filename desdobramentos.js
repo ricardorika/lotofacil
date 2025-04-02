@@ -7,13 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const dezenas = parseInt(button.dataset.dezenas);
             const jogos = parseInt(button.dataset.jogos);
             const fixas = parseInt(button.dataset.fixas) || 0;
+            const precisaAcertar = parseInt(button.dataset.precisa) || 15;
             const valorTotal = jogos * 3.00;
 
-            gerarDesdobramento(dezenas, jogos, fixas, valorTotal);
+            gerarDesdobramento(dezenas, jogos, fixas, valorTotal, precisaAcertar);
         });
     });
 
-    function gerarDesdobramento(dezenas, jogos, fixas = 0, valorTotal) {
+    function gerarDesdobramento(dezenas, jogos, fixas = 0, valorTotal, precisaAcertar) {
         resultadoDesdobramento.innerHTML = '';
         
         // Gerar números aleatórios para o desdobramento
@@ -53,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Criar elemento para mostrar o jogo
             const jogoElement = document.createElement('div');
-            jogoElement.className = 'p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow';
+            jogoElement.className = 'p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow border border-gray-200';
             
             const numerosElement = document.createElement('div');
             numerosElement.className = 'grid grid-cols-5 gap-2 mb-2';
@@ -79,11 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Adicionar informações sobre o desdobramento
         const infoDesdobramento = document.createElement('div');
-        infoDesdobramento.className = 'p-4 bg-blue-50 rounded-lg mb-6';
+        infoDesdobramento.className = 'p-4 bg-blue-50 rounded-lg mb-6 border border-blue-100';
         
         let infoText = `Desdobramento de ${dezenas} dezenas em ${jogos} jogos`;
         if (fixas > 0) {
             infoText += ` (${fixas} dezenas fixas)`;
+        }
+        if (precisaAcertar < 15) {
+            infoText += ` - Garantia de ${precisaAcertar} pontos`;
         }
         
         infoDesdobramento.innerHTML = `
